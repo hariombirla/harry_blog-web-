@@ -25,9 +25,9 @@
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select for="category" class="form-label" name="category_name" class="form-label">
-                    <option class="form-control" value="Education" {{ old('category_name') == 'Education' ? 'selected' : '' }} >  Education </option>
-                    <option class="form-control" value="Social" {{ old('category_name') == 'Social' ? 'selected' : '' }}> Social </option>
-                    <option class="form-control" value="News" {{ old('category_name') == 'News' ? 'selected' : '' }}> News </option>
+                    <option class="form-control" value="Education" {{ old('category_name',$student->category_name) == 'Education' ? 'selected' : '' }} >  Education </option>
+                    <option class="form-control" value="Social" {{ old('category_name',$student->category_name) == 'Social' ? 'selected' : '' }}> Social </option>
+                    <option class="form-control" value="News" {{ old('category_name',$student->category_name) == 'News' ? 'selected' : '' }}> News </option>
                 <select>
             </div>
             <button type="submit" class="btn btn-primary">Update Student</button>
