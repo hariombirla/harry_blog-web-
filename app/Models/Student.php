@@ -16,6 +16,5 @@ class Student extends Model
         'country',
         'state',
         'city',
-
     ];
 }
