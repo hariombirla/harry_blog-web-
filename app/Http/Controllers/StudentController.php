@@ -80,8 +80,8 @@ class StudentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'category' => 'required',
-            'description' => 'required|numeric',
+            'category_name' => 'required',
+            'description' => 'required',
         ]);
 
         if ($validator->fails()) {

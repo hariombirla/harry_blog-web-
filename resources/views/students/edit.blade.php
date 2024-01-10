@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Edit Student</h1>
+        <h1>Edit Blog</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -15,28 +15,20 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Blog Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $student->name) }}" >
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $student->email) }}" >
+                <label for="description" class="form-label">Blog Description</label>
+                <input type="textarea" class="form-control" id="description" name="description" value="{{ old('description', $student->description) }}" >
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $student->phone) }}" >
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" name="country" value="{{ old('country', $student->country) }}" >
-            </div>
-            <div class="mb-3">
-                <label for="state" class="form-label">State</label>
-                <input type="text" class="form-control" id="state" name="state" value="{{ old('state', $student->state) }}" >
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" name="city" value="{{ old('city', $student->city) }}" >
+                <label for="category" class="form-label">Category</label>
+                <select for="category" class="form-label" name="category_name" class="form-label">
+                    <option class="form-control" value="Education" {{ old('category_name') == 'Education' ? 'selected' : '' }} >  Education </option>
+                    <option class="form-control" value="Social" {{ old('category_name') == 'Social' ? 'selected' : '' }}> Social </option>
+                    <option class="form-control" value="News" {{ old('category_name') == 'News' ? 'selected' : '' }}> News </option>
+                <select>
             </div>
             <button type="submit" class="btn btn-primary">Update Student</button>
         </form>
@@ -52,19 +44,10 @@
                     name: {
                         required: true,
                     },
-                    email: {
+                    description: {
                         required: true,
                     },
-                    phone: {
-                        required: true,
-                    },
-                    country: {
-                        required: true,
-                    },
-                    state: {
-                        required: true,
-                    },
-                    city: {
+                    category_name: {
                         required: true,
                     },
                 },
@@ -72,20 +55,11 @@
                     name: {
                         required: "Please enter Name",
                     },
-                    email: {
-                        required: "Please select a email",
+                    description: {
+                        required: "Please select a description",
                     },
-                    phone: {
-                        required: "Please select an phone",
-                    },
-                    country: {
-                        required: "Please select an country",
-                    },
-                    state: {
-                        required: "Please enter state",
-                    },
-                    city: {
-                        required: "Please enter city",
+                    category_name: {
+                        required: "Please select an Category",
                     },
                 },
             });

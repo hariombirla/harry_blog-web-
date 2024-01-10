@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Create Students</h1>
+        <h1>Create Blogs</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -21,29 +21,16 @@
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select for="category" class="form-label" name="category_name" class="form-label">
-                    <option class="form-control" > Category </option>
-                    <option class="form-control" value="Education" >  Education </option>
-                    <option class="form-control" value="Social" > Social </option>
-                    <option class="form-control" value="News" > News </option>
+                    <option class="form-control"> Category</option>
+                    <option class="form-control" value="Education">Education</option>
+                    <option class="form-control" value="Social">Social</option>
+                    <option class="form-control" value="News">News</option>
                 <select>
-                {{-- <input type="text" class="form-control" id="category" name="category" value="{{ old('category') }}" > --}}
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Blog description</label>
                 <input type="textarea" class="form-control" id="description" name="description" value="{{ old('description') }}" >
             </div>
-            {{-- <div class="mb-3">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" name="country" value="{{ old('country') }}" >
-            </div>
-            <div class="mb-3">
-                <label for="state" class="form-label">State</label>
-                <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}" >
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" >
-            </div> --}}
             <button type="submit" class="btn btn-primary">Create Blog</button>
         </form>
     </div>
@@ -58,19 +45,10 @@
                     name: {
                         required: true,
                     },
-                    email: {
+                    description: {
                         required: true,
                     },
-                    phone: {
-                        required: true,
-                    },
-                    country: {
-                        required: true,
-                    },
-                    state: {
-                        required: true,
-                    },
-                    city: {
+                    category_name: {
                         required: true,
                     },
                 },
@@ -78,20 +56,11 @@
                     name: {
                         required: "Please enter Name",
                     },
-                    email: {
-                        required: "Please select a email",
+                    description: {
+                        required: "Please select a description",
                     },
-                    phone: {
-                        required: "Please select an phone",
-                    },
-                    country: {
-                        required: "Please select an country",
-                    },
-                    state: {
-                        required: "Please enter state",
-                    },
-                    city: {
-                        required: "Please enter city",
+                    category_name: {
+                        required: "Please select an Category",
                     },
                 },
             });

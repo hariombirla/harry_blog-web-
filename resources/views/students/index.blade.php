@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h4>Students List</h4>
-    <a class="btn btn-success" href="{{ route('students.create') }}">Add New Student</a>
+    <a class="btn btn-success" href="{{ route('students.create') }}">Add New Blog</a>
     <table class="table table-bordered" id="table-emp">
         <thead>
             <tr>
