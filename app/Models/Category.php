@@ -18,7 +18,7 @@ class Blog extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'blog';
+    protected $table = 'categories';
     protected $fillable = [
         'name',
         'description',
@@ -46,9 +46,4 @@ class Blog extends Authenticatable
         'password' => 'hashed',
     ];
 
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class,'blog_id','id');
-    }
 }
