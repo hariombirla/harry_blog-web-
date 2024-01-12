@@ -27,10 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd();
         $category = DB::table('categories')->get();
-        $blog = Blog::with('comments')->get();
-
+        $blog = Blog::with('comments.users')->get();
         return view('web/index', compact('category','blog'));
     }
 

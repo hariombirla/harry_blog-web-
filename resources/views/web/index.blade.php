@@ -45,14 +45,91 @@
 	<div class="main">
 		<div class="content">
 			<div class="box1">
-                @foreach ($blog as $blogs)
-                        <h3><a>{{ $blogs->name }}</a></h3>
-                        <div class="data">
-                            <p>{{ $blogs->description }}</p>
+                    <div id="Social_media" class="tabcontent">
+                                @foreach ($blog as $blogs)
+                                @if($blogs->category_name == "Social")
+                                    <h3><a>{{ $blogs->name }}</a></h3>
+                                    <div class="data">
+                                        <p>{{ $blogs->description }}</p>
+                                    </div>
+                                Comments
+                                    @foreach ($blogs->comments as $comment)
+                                        <div class="comment-thread">
+                                            <div class="comment-heading">
+                                                <div class="comment-voting">
+                                                    <img src="{{ asset('/images/user.png')}}" alt="" class="rounded-circle" width="20" height="20">
+                                                </div>
+
+                                                <div class="comment-info">
+                                                    <a href="#" class="comment-author">{{ $comment->users->name }}</a>
+                                                </div>
+                                            </div>
+                                            <div class="comment-body">
+                                                <a>
+                                                    {{ $comment->comment }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+                                    <div class="comment_content_{{$blogs->id}}">
+                                    </div>
+                                    </br></br>
+                                        <textarea type="text" name="comment" class="add_comment" id ="comment_{{ $blogs->id }}" style="font-family:sans-serif;font-size:1.2em;"></textarea>
+                                        <input type="hidden" name="user_id" class="user_id" id ="user_id" value="{{ Auth::user()->id }}">
+                                        <button name="comment_button" class="comment_button btn-logout-top" data-comment="{{ $blogs->id }}">Add Comment</button>
+                                        </br></br>
+                                @endif
+                                @endforeach
+                    </div>
+
+
+
+                       <div id="Education" class="tabcontent">
+                                @foreach ($blog as $blogs)
+                                 @if($blogs->category_name == "Education")
+                                        <h3><a>{{ $blogs->name }}</a></h3>
+                                        <div class="data">
+                                            <p>{{ $blogs->description }}</p>
+                                        </div>
+                                        Comments
+                                        @foreach ($blogs->comments as $comment)
+                                            <div class="comment-thread">
+                                                <div class="comment-heading">
+                                                    <div class="comment-voting">
+                                                        <img src="{{ asset('/images/user.png')}}" alt="" class="rounded-circle" width="20" height="20">
+                                                    </div>
+                                                    <div class="comment-info">
+                                                        <a href="#" class="comment-author">{{ Auth::user()->name }}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-body">
+                                                    <a>
+                                                        {{ $comment->comment }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <div class="comment_content_{{$blogs->id}}">
+                                        </div>
+                                        </br></br>
+                                            <textarea type="text" name="comment" class="add_comment" id ="comment_{{ $blogs->id }}" style="font-family:sans-serif;font-size:1.2em;"></textarea>
+                                            <input type="hidden" name="user_id" class="user_id" id ="user_id" value="{{ Auth::user()->id }}">
+                                            <button name="comment_button" class="comment_button btn-logout-top" data-comment="{{ $blogs->id }}">Add Comment</button>
+                                            </br></br>
+                                @endif
+                                @endforeach
                         </div>
-                        Comments
-                        @foreach ($blogs->comments as $comment)
-                            <div class="comment-thread">
+                        <div id="News" class="tabcontent">
+                                @foreach ($blog as $blogs)
+                                @if($blogs->category_name == "News")
+                                <h3><a>{{ $blogs->name }}</a></h3>
+                                <div class="data">
+                                    <p>{{ $blogs->description }}</p>
+                                </div>
+                                Comments
+                                @foreach ($blogs->comments as $comment)
+                                    <div class="comment-thread">
                                     <div class="comment-heading">
                                         <div class="comment-voting">
                                             <img src="{{ asset('/images/user.png')}}" alt="" class="rounded-circle" width="20" height="20">
@@ -65,18 +142,22 @@
                                         <a>
                                             {{ $comment->comment }}
                                         </a>
+                                     </div>
                                     </div>
+                                @endforeach
+                                <div class="comment_content_{{$blogs->id}}">
                                 </div>
+                                </br></br>
+                                <textarea type="text" name="comment" class="add_comment" id ="comment_{{ $blogs->id }}" style="font-family:sans-serif;font-size:1.2em;"></textarea>
+                                <input type="hidden" name="user_id" class="user_id" id ="user_id" value="{{ Auth::user()->id }}">
+                                <button name="comment_button" class="comment_button btn-logout-top" data-comment="{{ $blogs->id }}">Add Comment</button>
+                                </br></br>
 
-                        @endforeach
-                         <div class="comment_content_{{$blogs->id}}">
-                          </div>
-                        </br></br>
-                            <textarea type="text" name="comment" class="add_comment" id ="comment_{{ $blogs->id }}" style="font-family:sans-serif;font-size:1.2em;"></textarea>
-                            <input type="hidden" name="user_id" class="user_id" id ="user_id" value="{{ Auth::user()->id }}">
-                            <button name="comment_button" class="comment_button btn-logout-top" data-comment="{{ $blogs->id }}">Add Comment</button>
-                            </br></br>
-                    @endforeach
+                            @endif
+                            @endforeach
+                        </div>
+
+
 			    <div class="clear"></div>
 		    </div>
                 <div class="page_links">
@@ -88,14 +169,13 @@
 <div class="sidebar_top">
     <h3>Blog Categories</h3>
 <div class="sidebar_top_list">
-	 <ul>
-        @foreach ($category as $categorys )
-		<li>
-        <a href="#"><span class="category-name">{{ $categorys->category_name }}</span><div class="clear"></div></a>
-        </li>
 
-        @endforeach
-	</ul>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Social_media')" id="defaultOpen">Social media</button>
+        <button class="tablinks" onclick="openCity(event, 'Education')">Education</button>
+        <button class="tablinks" onclick="openCity(event, 'News')">News</button>
+      </div>
+
 </div>
 </div>
 
@@ -166,3 +246,21 @@ $(".comment_button").click(function(){
 
 });
 </script>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
